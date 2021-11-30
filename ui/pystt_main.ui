@@ -77,6 +77,11 @@
        </item>
        <item>
         <property name="text">
+         <string>ru-RU</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
          <string>en-US</string>
         </property>
        </item>
