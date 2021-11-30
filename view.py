@@ -2,9 +2,9 @@ import sys
 
 from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QTextEdit
+from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QTextEdit, QFileDialog
 
-from logic import foo, properties
+from logic import properties, convert_file
 
 
 def load_ui_file(filename: str) -> QFile:
@@ -22,6 +22,7 @@ class MainWindow(QMainWindow):
         self.adjustSize()
 
         form.setWindowTitle("pySTT")
+        form.resize(430, 220)
 
         self.layout = QVBoxLayout(form)
 
@@ -42,11 +43,22 @@ class MainWindow(QMainWindow):
         self.lang_combo.currentTextChanged.connect(self.set_input_lang)
         self.output_combo: QComboBox = self.widget.output_combo  # noqa
 
+        self.input_button: QToolButton = self.widget.input_button  # noqa
+        self.output_button: QToolButton = self.widget.output_button  # noqa
         self.process_button: QPushButton = self.widget.process_button  # noqa
-        self.configure_button()
+        self.configure_buttons()
 
-    def configure_button(self):
-        self.process_button.clicked.connect(lambda x: foo("/home/user/bla"))
+    def configure_buttons(self):
+        self.input_button.clicked.connect(self.select_input_file)
+        self.process_button.clicked.connect(convert_file)
+
+    def select_input_file(self):
+        file_name, _ = QFileDialog.getOpenFileName(self,
+                                                   "Open WAV",
+                                                   "",
+                                                   "WAV files (*.wav)")
+        properties.file_name = file_name
+        self.input_edit.setText(file_name)
 
     def set_input_lang(self):
         input_lang = self.lang_combo.currentText()
