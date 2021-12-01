@@ -4,7 +4,7 @@ from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QTextEdit, QFileDialog
 
-from logic import properties, convert_file
+from logic import properties, convert_file, user_home
 
 
 def load_ui_file(filename: str) -> QFile:
@@ -50,15 +50,24 @@ class MainWindow(QMainWindow):
 
     def configure_buttons(self):
         self.input_button.clicked.connect(self.select_input_file)
+        self.output_button.clicked.connect(self.select_output_path)
         self.process_button.clicked.connect(convert_file)
 
     def select_input_file(self):
-        file_name, _ = QFileDialog.getOpenFileName(self,
+        file_path, _ = QFileDialog.getOpenFileName(self,
                                                    "Open WAV",
-                                                   "",
+                                                   user_home,
                                                    "WAV files (*.wav)")
-        properties.file_name = file_name
-        self.input_edit.setText(file_name)
+        properties.file_path = file_path
+        self.input_edit.setText(file_path)
+
+    def select_output_path(self):
+        output_path = QFileDialog.getExistingDirectory(self,
+                                                       "Output path",
+                                                       user_home)
+
+        properties.output_path = output_path
+        self.output_edit.setText(output_path)
 
     def set_input_lang(self):
         input_lang = self.lang_combo.currentText()
