@@ -1,4 +1,4 @@
-# - pyToolbox
+# pyToolbox
 
 Within this repository a collection of simple tools for various purposes is
 provided. Each section contains a summary of features and installation guides
