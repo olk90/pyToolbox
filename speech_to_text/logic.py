@@ -3,7 +3,7 @@ from pathlib import Path
 
 import speech_recognition as sr
 
-user_home = os.path.expanduser("~")
+from common.logic import user_home
 
 
 class Properties:

@@ -1,8 +1,8 @@
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QTextEdit, QFileDialog
+from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QTextEdit
 
-from common.view import load_ui_file
-from logic import properties, convert_file, user_home
+from common.view import load_ui_file, get_open_filename, get_filepath
+from logic import properties, convert_file
 
 
 class PySSTMainWindow(QMainWindow):
@@ -44,17 +44,14 @@ class PySSTMainWindow(QMainWindow):
         self.process_button.clicked.connect(convert_file)
 
     def select_input_file(self):
-        file_path, _ = QFileDialog.getOpenFileName(self,
-                                                   "Open WAV",
-                                                   user_home,
-                                                   "WAV files (*.wav)")
+        file_path, _ = get_open_filename(self,
+                                         "Open WAV",
+                                         "WAV files (*.wav)")
         properties.file_path = file_path
         self.input_edit.setText(file_path)
 
     def select_output_path(self):
-        output_path = QFileDialog.getExistingDirectory(self,
-                                                       "Output path",
-                                                       user_home)
+        output_path = get_filepath(self, "Output path")
 
         properties.output_path = output_path
         self.output_edit.setText(output_path)
