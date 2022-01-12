@@ -1,21 +1,11 @@
-import sys
-
-from PySide6.QtCore import QFile
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QTextEdit, QFileDialog
 
+from common.view import load_ui_file
 from logic import properties, convert_file, user_home
 
 
-def load_ui_file(filename: str) -> QFile:
-    ui_file = QFile(filename)
-    if not ui_file.open(QFile.ReadOnly):
-        print("Cannot open {}: {}".format(filename, ui_file.errorString()))
-        sys.exit(-1)
-    return ui_file
-
-
-class MainWindow(QMainWindow):
+class PySSTMainWindow(QMainWindow):
 
     def __init__(self, form):
         super().__init__(parent=form)

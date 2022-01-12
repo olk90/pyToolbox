@@ -6,7 +6,7 @@ for the tool at hand.
 
 ## Speech-to-Text
 
-![view.png](img/view.png)
+![view.png](img/speecht_to_text_view.png)
 
 This tool provides a simple UI to process WAV files with Google's speech
 recognition. The input file has to be selected from the file system by either
