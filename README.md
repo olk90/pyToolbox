@@ -1,8 +1,14 @@
-# pySTT
+# - pyToolbox
+
+Within this repository a collection of simple tools for various purposes is
+provided. Each section contains a summary of features and installation guides
+for the tool at hand.
+
+## Speech-to-Text
 
 ![view.png](img/view.png)
 
-This tool provides a simple PySide6 UI to process WAV files with Google's speech
+This tool provides a simple UI to process WAV files with Google's speech
 recognition. The input file has to be selected from the file system by either
 inserting the path to the text field _Input File_ or by selecting it manually by
 clicking the button on the right.
@@ -14,13 +20,13 @@ input file.
 
 The processing is started by clicking the _Process_ button.
 
-## Installation
+### Installation
 
 To install `pySTT` on a local computer make sure, this machine has Python 3.9 (
 or higher) installed. After downloading the sources, set up a virtual
 environment within the directory and install the requirements:
 
-### Unix/Linux
+#### Unix/Linux
 
 ```sh
 # create environment
@@ -33,7 +39,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Windows
+#### Windows
 
 On Windows you have to make sure, that `virtualenv` ist installed on the machine
 as well. How to du that is described
@@ -51,13 +57,13 @@ Rem install requirements
 pip install -r requirements.txt
 ```
 
-**IMPORTANT:** To create the environment with `--python python`, Python must 
-be added properly to the PATH variable! If this is not the case, use the 
-argument `--python C:\Absolute\path\to\python.exe` instead. Where to find it 
-is described [here](https://mothergeo-py.readthedocs.io/en/latest/development/how-to/venv-win.html#where-s-my-python)
+**IMPORTANT:** To create the environment with `--python python`, Python must be
+added properly to the PATH variable! If this is not the case, use the
+argument `--python C:\Absolute\path\to\python.exe` instead. Where to find it is
+described [here](https://mothergeo-py.readthedocs.io/en/latest/development/how-to/venv-win.html#where-s-my-python)
 .
 
-## Execution
+### Execution
 
 After running the build scripts (`build.sh` on Unix and Linux, `build.bat`
 on Windows), there is a directory called `dist/pySTT` created. In there lies the
