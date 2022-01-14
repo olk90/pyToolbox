@@ -109,4 +109,4 @@ class UnzipWrapperMainWindow(QMainWindow):
         self.tp_edit.setText(target_path)
 
     def clear_list(self):
-        self.lv.model().clear()
+        self.lv.clear_data()
