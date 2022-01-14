@@ -19,7 +19,11 @@
      <item>
       <layout class="QHBoxLayout" name="tp_layout">
        <item>
-        <widget class="QLineEdit" name="tp_edit"/>
+        <widget class="QLineEdit" name="tp_edit">
+         <property name="placeholderText">
+          <string>Extract to</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QToolButton" name="tp_button">
@@ -29,6 +33,13 @@
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="format_edit">
+       <property name="placeholderText">
+        <string>Formats to extract</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -46,9 +57,6 @@
         <bool>true</bool>
        </property>
       </widget>
-     </item>
-     <item>
-      <widget class="QListView" name="lv"/>
      </item>
     </layout>
    </item>
@@ -93,22 +101,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>clear_button</sender>
-   <signal>clicked()</signal>
-   <receiver>lv</receiver>
-   <slot>clearSelection()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>621</x>
-     <y>552</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>506</x>
-     <y>390</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
