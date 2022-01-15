@@ -26,8 +26,8 @@ class PySSTMainWindow(QMainWindow):
         self.layout.addWidget(self.widget)
 
         # initialize fields
-        self.input_edit: QTextEdit = self.widget.input_edit  # noqa
-        self.output_edit: QTextEdit = self.widget.output_edit  # noqa
+        self.input_edit: QLineEdit = self.widget.input_edit  # noqa
+        self.output_edit: QLineEdit = self.widget.output_edit  # noqa
 
         self.lang_combo: QComboBox = self.widget.lang_combo  # noqa
         self.lang_combo.currentTextChanged.connect(self.set_input_lang)
