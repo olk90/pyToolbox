@@ -1,18 +1,19 @@
 from PySide6.QtCore import QMimeData
-from PySide6.QtGui import QDropEvent, QDragEnterEvent, QStandardItemModel, QStandardItem, Qt, QDragMoveEvent
+from PySide6.QtGui import QDropEvent, QDragEnterEvent, Qt, QDragMoveEvent
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QFileSystemModel, QListView, QPushButton, QAbstractItemView
+from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QFileSystemModel, QPushButton, QAbstractItemView, \
+    QListWidget
 
 from common.logic import user_home
 from common.view import load_ui_file, get_filepath
-from unzip_wrapper.logic import properties
+from unzip_wrapper.logic import properties, unzip_archives
 
 
-class DropListView(QListView):
+class DropListWidget(QListWidget):
 
     def __init__(self):
-        super(DropListView, self).__init__()
-        self.setModel(QStandardItemModel())
+        super(DropListWidget, self).__init__()
+        # self.setModel(QStandardItemModel())
         self.setDefaultDropAction(Qt.CopyAction)
         self.setDragDropMode(QAbstractItemView.DragDrop)
         self.acceptDrops()
@@ -39,15 +40,14 @@ class DropListView(QListView):
         archives = properties.archives
         if file not in archives:
             archives.append(file)
-            item: QStandardItem = QStandardItem(file)
-            self.model().appendRow(item)
+            self.addItem(file)
             event.accept()
         else:
             event.setAccepted(False)
 
     def clear_data(self):
         properties.archives.clear()
-        self.setModel(QStandardItemModel())
+        self.clear()
 
 
 class UnzipWrapperMainWindow(QMainWindow):
@@ -75,7 +75,7 @@ class UnzipWrapperMainWindow(QMainWindow):
         self.tp_edit: QLineEdit = self.widget.tp_edit  # noqa
 
         self.view_layout: QHBoxLayout = self.widget.view_layout  # noqa
-        self.lv: DropListView = DropListView()  # noqa
+        self.lv: DropListWidget = DropListWidget()  # noqa
         self.view_layout.addWidget(self.lv)
 
         self.tv: QTreeView = self.widget.tv  # noqa
@@ -99,6 +99,7 @@ class UnzipWrapperMainWindow(QMainWindow):
         self.tp_button.clicked.connect(self.select_target_path)
         self.od_button.clicked.connect(self.select_source_path)
         self.clear_button.clicked.connect(self.clear_list)
+        self.unzip_button.clicked.connect(self.unzip_archives)
 
     def select_source_path(self):
         output_path = get_filepath(self, "Source directory")
@@ -110,3 +111,9 @@ class UnzipWrapperMainWindow(QMainWindow):
 
     def clear_list(self):
         self.lv.clear_data()
+
+    def unzip_archives(self):
+        tp: str = self.tp_edit.text()
+        if len(tp) > 0:
+            properties.target_path = self.tp_edit.text()
+        unzip_archives()

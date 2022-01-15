@@ -7,10 +7,10 @@ from common.logic import user_home
 
 
 class Properties:
-    file_path = ""
-    input_lang = "de-DE"
-    output_path = user_home
-    output_format = "*.txt"
+    file_path: str = ""
+    input_lang: str = "de-DE"
+    output_path: str = user_home
+    output_format: str = "*.txt"
 
 
 properties = Properties()
