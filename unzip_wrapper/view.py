@@ -102,11 +102,12 @@ class UnzipWrapperMainWindow(QMainWindow):
         self.unzip_button.clicked.connect(self.unzip_archives)
 
     def select_source_path(self):
-        output_path = get_filepath(self, "Source directory")
-        self.set_root_index(output_path)
+        source_path = get_filepath(self, "Source directory")
+        properties.source_path = source_path
+        self.set_root_index(source_path)
 
     def select_target_path(self):
-        target_path = get_filepath(self, "Target path")
+        target_path = get_filepath(self, "Target path", properties.source_path)
         self.tp_edit.setText(target_path)
 
     def clear_list(self):

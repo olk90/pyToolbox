@@ -18,5 +18,5 @@ def get_open_filename(parent: QWidget, caption: str, selected_filter: str) -> tu
     return QFileDialog.getOpenFileName(parent, caption, user_home, selected_filter)
 
 
-def get_filepath(parent: QWidget, caption: str) -> str:
-    return QFileDialog.getExistingDirectory(parent, caption, user_home)
+def get_filepath(parent: QWidget, caption: str, start_dir: str = user_home) -> str:
+    return QFileDialog.getExistingDirectory(parent, caption, start_dir)

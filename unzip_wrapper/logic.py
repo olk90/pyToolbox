@@ -5,6 +5,7 @@ from common.logic import user_home
 
 class Properties:
     archives: list = []
+    source_path: str = user_home
     target_path: str = user_home
 
 
