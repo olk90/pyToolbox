@@ -12,7 +12,7 @@ class Properties:
 properties = Properties()
 
 
-def unzip_archives():
+def unzip_archives() -> bool:
     for file_name in properties.archives:
         with ZipFile(file_name, "r") as zf:
             zf.printdir()
@@ -20,3 +20,6 @@ def unzip_archives():
             tp: str = properties.target_path
             zf.extractall(path=tp)
             print('Done!')
+            return True
+    return False
+

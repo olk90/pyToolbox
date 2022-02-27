@@ -5,7 +5,7 @@ from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QFileSystemModel, QPushB
     QListWidget
 
 from common.logic import user_home
-from common.view import load_ui_file, get_filepath
+from common.view import load_ui_file, get_filepath, execution_finished
 from unzip_wrapper.logic import properties, unzip_archives
 
 
@@ -13,7 +13,6 @@ class DropListWidget(QListWidget):
 
     def __init__(self):
         super(DropListWidget, self).__init__()
-        # self.setModel(QStandardItemModel())
         self.setDefaultDropAction(Qt.CopyAction)
         self.setDragDropMode(QAbstractItemView.DragDrop)
         self.acceptDrops()
@@ -117,4 +116,6 @@ class UnzipWrapperMainWindow(QMainWindow):
         tp: str = self.tp_edit.text()
         if len(tp) > 0:
             properties.target_path = self.tp_edit.text()
-        unzip_archives()
+        success: bool = unzip_archives()
+        if success:
+            execution_finished(self)
