@@ -41,8 +41,8 @@ pip install -r requirements.txt
 
 #### Windows
 
-On Windows you have to make sure, that `virtualenv` ist installed on the machine
-as well. How to du that is described
+On Windows you have to make sure, that `virtualenv` is installed on the machine
+as well. How to do that is described
 on [mothergeo-py.readthedocs.io](https://mothergeo-py.readthedocs.io/en/latest/development/how-to/venv-win.html#install-virtualenv)
 .
 
