@@ -41,14 +41,9 @@ pip install -r requirements.txt
 
 #### Windows
 
-On Windows you have to make sure, that `virtualenv` is installed on the machine
-as well. How to do that is described
-on [mothergeo-py.readthedocs.io](https://mothergeo-py.readthedocs.io/en/latest/development/how-to/venv-win.html#install-virtualenv)
-.
-
 ```bat
 Rem create environment
-virtualenv --python python venv
+python -m venv venv
 
 Rem activate it
 .\venv\Scripts\activate
@@ -57,7 +52,7 @@ Rem install requirements
 pip install -r requirements.txt
 ```
 
-**IMPORTANT:** To create the environment with `--python python`, Python must be
+**IMPORTANT:** To create the environment with `python`, Python must be
 added properly to the PATH variable! If this is not the case, use the
 argument `--python C:\Absolute\path\to\python.exe` instead. Where to find it is
 described [here](https://mothergeo-py.readthedocs.io/en/latest/development/how-to/venv-win.html#where-s-my-python)
