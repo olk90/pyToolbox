@@ -1,5 +1,8 @@
 # pyToolbox
 
+I have moved this repository to https://codeberg.org/olk90/pyToolbox where I 
+will continue development.
+
 Within this repository a collection of simple tools for various purposes is
 provided. Each section contains a summary of features and installation guides
 for the tool at hand.
